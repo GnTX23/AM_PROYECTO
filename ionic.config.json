@@ -1,0 +1,7 @@
+{
+  "name": "proyecto_utmarket",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

@@ -1,20 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-carrito',
   templateUrl: './carrito.page.html',
   styleUrls: ['./carrito.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule]
 })
-export class CarritoPage implements OnInit {
+export class CarritoPage {
 
-  constructor() { }
+  carrito = [
+    { nombre: 'Galletas', precio: 15, cantidad: 1 },
+    { nombre: 'Papitas', precio: 20, cantidad: 3 },
+  ];
 
-  ngOnInit() {
+  get total() {
+    return this.carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
   }
-
 }

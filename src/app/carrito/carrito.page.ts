@@ -13,8 +13,8 @@ import { CommonModule } from '@angular/common';
 export class CarritoPage {
 
   carrito = [
-    { nombre: 'Galletas', precio: 15, cantidad: 1, imagen: 'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=400', vendedor: 'César' },
-    { nombre: 'Papitas', precio: 20, cantidad: 3, imagen: 'https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=400', vendedor: 'Ana' },
+    { nombre: 'Galletas costco', precio: 15, cantidad: 1, imagen: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl1c1SQJogbxGJa0YqKQOnCQbE5DnZnbzgKQ&s', vendedor: 'Valeria' },
+    { nombre: 'Chidas', precio: 18, cantidad: 3, imagen: 'https://chedrauimx.vtexassets.com/arquivos/ids/64549013-800-auto?v=639082673038000000&width=800&height=auto&aspect=true', vendedor: 'George' },
   ];
 
   get total() {

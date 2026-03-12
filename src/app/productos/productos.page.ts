@@ -18,13 +18,12 @@ export class ProductosPage {
   mostrarToast = false;
   mensajeToast = '';
 
-  productos = [
-    { id: 1, nombre: 'Hamburguesa', precio: 55, imagen: 'assets/chi.png', descripcion: 'Deliciosa hamburguesa', vendedor: 'César' },
-    { id: 2, nombre: 'Galletas', precio: 15, imagen: 'assets/chi.png', descripcion: 'Galletas de choc. 8cm', vendedor: 'César' },
-    { id: 3, nombre: 'Papitas', precio: 20, imagen: 'assets/chi.png', descripcion: 'Papitas crujientes', vendedor: 'Ana' },
-    { id: 4, nombre: 'Smoothie', precio: 35, imagen: 'assets/chi.png', descripcion: 'Smoothie natural', vendedor: 'Ana' },
-  ];
-
+productos = [
+  { id: 1, nombre: 'Hamburguesa', precio: 55, imagen: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400', descripcion: 'Deliciosa hamburguesa', vendedor: 'César' },
+  { id: 2, nombre: 'Galletas', precio: 15, imagen: 'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=400', descripcion: 'Galletas de choc. 8cm', vendedor: 'César' },
+  { id: 3, nombre: 'Papitas', precio: 20, imagen: 'https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=400', descripcion: 'Papitas crujientes', vendedor: 'Ana' },
+  { id: 4, nombre: 'Smoothie', precio: 35, imagen: 'https://images.unsplash.com/photo-1553530666-ba11a90a3abe?w=400', descripcion: 'Smoothie natural', vendedor: 'Ana' },
+];
   get productosFiltrados() {
     if (!this.busqueda) return this.productos;
     return this.productos.filter(p =>

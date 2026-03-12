@@ -1,7 +1,7 @@
 .product-card {
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 12px rgba(93, 93, 88, 0.379);
   margin: 6px 0;
 
   .product-img {
@@ -13,7 +13,7 @@
   .product-name {
     font-size: 0.95rem;
     font-weight: 700;
-    color: #2c1a0e;
+    color: #ffdcc5;
   }
 
   .product-price {
@@ -33,5 +33,23 @@
     ion-icon {
       font-size: 0.8rem;
     }
+  }
+}
+.ion-content {
+  --background: #0e0d0d;
+}
+
+.ion-searchbar {
+  --background: #0e0d0d;
+  --color: white;
+  --placeholder-color: #d4a853;
+  --icon-color: #d4a853;
+}
+
+.product-card {
+  background: #2c1a0e;
+  
+  .product-name {
+    color: #f5c842 !important;
   }
 }

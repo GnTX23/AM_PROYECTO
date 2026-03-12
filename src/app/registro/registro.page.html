@@ -1,0 +1,107 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registro </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="register-header">
+    <h2>Crear cuenta</h2>
+    <p>Ingresa tus datos para registrarte</p>
+  </div>
+
+  <ion-list lines="none">
+
+    <!-- Nombre -->
+    <ion-item class="input-item">
+      <ion-icon name="person-outline" slot="start" color="warning"></ion-icon>
+      <ion-label position="floating">Nombre completo</ion-label>
+      <ion-input
+        type="text"
+        placeholder="Ej. Ana García"
+        [(ngModel)]="nombre"
+        required>
+      </ion-input>
+    </ion-item>
+
+    <!-- Correo -->
+    <ion-item class="input-item">
+      <ion-icon name="mail-outline" slot="start" color="warning"></ion-icon>
+      <ion-label position="floating">Correo electrónico</ion-label>
+      <ion-input
+        type="email"
+        placeholder="ejemplo@correo.com"
+        [(ngModel)]="correo"
+        required>
+      </ion-input>
+    </ion-item>
+
+    <!-- Teléfono -->
+    <ion-item class="input-item">
+      <ion-icon name="call-outline" slot="start" color="warning"></ion-icon>
+      <ion-label position="floating">Número telefónico</ion-label>
+      <ion-input
+        type="tel"
+        placeholder="+52 000 000 0000"
+        [(ngModel)]="telefono"
+        required>
+      </ion-input>
+    </ion-item>
+
+    <!-- Aula -->
+    <ion-item class="input-item">
+      <ion-icon name="school-outline" slot="start" color="warning"></ion-icon>
+      <ion-label>Aula</ion-label>
+      <ion-select
+        placeholder="Selecciona tu aula"
+        [(ngModel)]="aula"
+        interface="action-sheet"
+        cancelText="Cancelar"
+        okText="Aceptar">
+        <ion-select-option value="A1">Aula A1</ion-select-option>
+        <ion-select-option value="A2">Aula A2</ion-select-option>
+        <ion-select-option value="B1">Aula B1</ion-select-option>
+        <ion-select-option value="B2">Aula B2</ion-select-option>
+        <ion-select-option value="C1">Aula C1</ion-select-option>
+        <ion-select-option value="C2">Aula C2</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Contraseña -->
+    <ion-item class="input-item">
+      <ion-icon name="lock-closed-outline" slot="start" color="warning"></ion-icon>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input
+        [type]="mostrarPassword ? 'text' : 'password'"
+        placeholder="Mínimo 8 caracteres"
+        [(ngModel)]="password"
+        required>
+      </ion-input>
+      <ion-button fill="clear" slot="end" (click)="togglePassword()">
+        <ion-icon
+          [name]="mostrarPassword ? 'eye-off-outline' : 'eye-outline'"
+          color="medium">
+        </ion-icon>
+      </ion-button>
+    </ion-item>
+
+  </ion-list>
+
+  <!-- Botón Registrar -->
+  <div class="btn-area">
+    <ion-button expand="block" color="warning" (click)="registrar()">
+      <ion-icon name="person-add-outline" slot="start"></ion-icon>
+      Registrarme
+    </ion-button>
+
+    <p class="login-link">
+      ¿Ya tienes cuenta?
+      <a routerLink="/login">Iniciar sesión</a>
+    </p>
+  </div>
+
+</ion-content>

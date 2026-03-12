@@ -1,0 +1,45 @@
+.register-header {
+  text-align: center;
+  margin: 20px 0 24px;
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  p {
+    color: var(--ion-color-medium);
+    font-size: 0.9rem;
+  }
+}
+
+.input-item {
+  --background: var(--ion-color-light);
+  --border-radius: 12px;
+  margin-bottom: 12px;
+  --padding-start: 12px;
+}
+
+.btn-area {
+  margin-top: 24px;
+
+  ion-button {
+    --border-radius: 12px;
+    height: 48px;
+    font-weight: 600;
+  }
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 16px;
+  color: var(--ion-color-medium);
+  font-size: 0.85rem;
+
+  a {
+    color: var(--ion-color-warning-shade);
+    font-weight: 600;
+    text-decoration: none;
+  }
+}

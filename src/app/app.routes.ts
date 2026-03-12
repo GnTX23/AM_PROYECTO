@@ -34,4 +34,8 @@ export const routes: Routes = [
     path: 'perfil-vendedor',
     loadComponent: () => import('./perfil-vendedor/perfil-vendedor.page').then( m => m.PerfilVendedorPage)
   },
+  {
+    path: 'registro',
+    loadComponent: () => import('./registro/registro.page').then( m => m.RegistroPage)
+  },
 ];

@@ -1,13 +1,170 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>perfil_Vendedor</ion-title>
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/productos"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Perfil Vendedor </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="guardarCambios()">
+        <ion-icon name="save-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">perfil_Vendedor</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+
+  <!-- Foto del vendedor -->
+  <ion-card class="avatar-card">
+    <ion-card-content class="ion-text-center">
+
+      <ion-avatar class="perfil-avatar" (click)="seleccionarFoto()">
+        <img [src]="vendedor.foto || 'assets/icon/default-user.png'" alt="Foto vendedor"/>
+      </ion-avatar>
+
+      <ion-chip color="warning" (click)="seleccionarFoto()">
+        <ion-icon name="camera-outline"></ion-icon>
+        <ion-label>Cambiar foto</ion-label>
+      </ion-chip>
+
+      <input
+        #fileInput
+        type="file"
+        accept="image/*"
+        style="display:none"
+        (change)="onFotoSeleccionada($event)" />
+
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Información editable -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Información personal</ion-card-title>
+      <ion-card-subtitle>Actualiza tus datos</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list lines="none">
+
+        <ion-item class="input-item">
+          <ion-icon name="person-outline" slot="start" color="warning"></ion-icon>
+          <ion-label position="floating">Nombre completo</ion-label>
+          <ion-input type="text" placeholder="Ej. Ana García" [(ngModel)]="vendedor.nombre">
+          </ion-input>
+        </ion-item>
+
+        <ion-item class="input-item">
+          <ion-icon name="call-outline" slot="start" color="warning"></ion-icon>
+          <ion-label position="floating">Número telefónico</ion-label>
+          <ion-input type="tel" placeholder="+52 000 000 0000" [(ngModel)]="vendedor.telefono">
+          </ion-input>
+        </ion-item>
+
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- WhatsApp -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Contacto WhatsApp</ion-card-title>
+      <ion-card-subtitle>Los compradores podrán contactarte directo</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item class="input-item">
+        <ion-icon name="logo-whatsapp" slot="start" color="success"></ion-icon>
+        <ion-label position="floating">Número de WhatsApp</ion-label>
+        <ion-input
+          type="tel"
+          placeholder="+52 000 000 0000"
+          [(ngModel)]="vendedor.whatsapp">
+        </ion-input>
+      </ion-item>
+
+      <ion-button
+        expand="block"
+        color="success"
+        class="ion-margin-top"
+        (click)="abrirWhatsapp()"
+        [disabled]="!vendedor.whatsapp">
+        <ion-icon name="logo-whatsapp" slot="start"></ion-icon>
+        Probar enlace de WhatsApp
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Productos destacados -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Productos destacados</ion-card-title>
+      <ion-card-subtitle>Agrega hasta 3 productos destacados</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <div *ngFor="let producto of productosDestacados; let i = index">
+        <ion-item class="input-item">
+          <ion-icon name="star-outline" slot="start" color="warning"></ion-icon>
+          <ion-label position="floating">Nombre del producto</ion-label>
+          <ion-input
+            type="text"
+            placeholder="Ej. Tacos de canasta"
+            [(ngModel)]="productosDestacados[i].nombre">
+          </ion-input>
+        </ion-item>
+
+        <ion-item class="input-item">
+          <ion-icon name="pricetag-outline" slot="start" color="warning"></ion-icon>
+          <ion-label position="floating">Precio</ion-label>
+          <ion-input
+            type="number"
+            placeholder="Ej. 35"
+            [(ngModel)]="productosDestacados[i].precio">
+          </ion-input>
+        </ion-item>
+
+        <!-- Foto del producto -->
+        <ion-item lines="none" class="input-item">
+          <ion-icon name="image-outline" slot="start" color="warning"></ion-icon>
+          <ion-label>Foto del producto</ion-label>
+          <ion-thumbnail slot="end" (click)="seleccionarFotoProducto(i)">
+            <img [src]="producto.foto || 'assets/icon/default-product.png'" />
+          </ion-thumbnail>
+        </ion-item>
+
+        <input
+          [id]="'fileProducto' + i"
+          type="file"
+          accept="image/*"
+          style="display:none"
+          (change)="onFotoProductoSeleccionada($event, i)" />
+
+        <ion-button
+          fill="outline"
+          color="warning"
+          size="small"
+          class="ion-margin-bottom"
+          (click)="seleccionarFotoProducto(i)">
+          <ion-icon name="camera-outline" slot="start"></ion-icon>
+          Cambiar foto
+        </ion-button>
+
+        <ion-note color="medium" *ngIf="i < productosDestacados.length - 1">
+          ─────────────────────────
+        </ion-note>
+      </div>
+
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Botón guardar -->
+  <div class="ion-padding">
+    <ion-button expand="block" color="warning" (click)="guardarCambios()">
+      <ion-icon name="save-outline" slot="start"></ion-icon>
+      Guardar cambios
+    </ion-button>
+  </div>
+
 </ion-content>

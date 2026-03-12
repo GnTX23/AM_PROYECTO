@@ -1,0 +1,57 @@
+.avatar-card {
+  text-align: center;
+
+  ion-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  
+
+}
+
+.perfil-avatar {
+  width: 110px;
+  height: 110px;
+  cursor: pointer;
+  border: 3px solid var(--ion-color-warning);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.input-item {
+  margin-bottom: 8px;
+  border-radius: 10px;
+  --background: #f5f5f5;
+}
+
+.seccion-titulo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 16px 0 8px 0;
+
+  h3 {
+    margin: 0;
+    font-weight: 600;
+  }
+  
+
+}
+
+ion-card-title{
+    color: #ffffff !important;
+}
+  ion-label {
+color: #000000 !important;
+  }
+  ion-card-subtitle{
+    color: #ffffff !important;
+  }
+

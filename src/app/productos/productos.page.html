@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-title>UTMarket 🛒</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/carrito">
+        <ion-icon name="cart-outline"></ion-icon>
+        <ion-badge color="danger" *ngIf="carrito.length > 0">{{ carrito.length }}</ion-badge>
+      </ion-button>
+      <ion-button routerLink="/perfil-user">
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ion-toolbar color="warning">
+    <ion-searchbar
+      [(ngModel)]="busqueda"
+      placeholder="Buscar productos..."
+      animated="true"
+      color="light">
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let p of productosFiltrados">
+        <ion-card class="product-card">
+          <img [src]="p.imagen" alt="producto" class="product-img"/>
+          <ion-card-header>
+            <ion-card-title class="product-name">{{ p.nombre }}</ion-card-title>
+            <ion-card-subtitle class="product-price">${{ p.precio }}</ion-card-subtitle>
+            <p class="product-vendor">
+              <ion-icon name="storefront-outline"></ion-icon>
+              {{ p.vendedor }}
+            </p>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-button expand="block" size="small" color="warning" (click)="agregarAlCarrito(p)">
+              <ion-icon name="cart-outline" slot="start"></ion-icon>
+              Agregar
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-toast
+    [isOpen]="mostrarToast"
+    [message]="mensajeToast"
+    duration="1500"
+    color="success"
+    position="bottom"
+    (didDismiss)="mostrarToast = false">
+  </ion-toast>
+</ion-content>

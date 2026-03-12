@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/productos"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Mi Carrito 🛒</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="carrito.length === 0" class="empty-cart">
+    <ion-icon name="cart-outline"></ion-icon>
+    <p>Tu carrito está vacío</p>
+    <ion-button color="warning" routerLink="/productos">Ver productos</ion-button>
+  </div>
+
+  <ion-list *ngIf="carrito.length > 0">
+    <ion-item *ngFor="let item of carrito; let i = index" class="cart-item">
+      <img [src]="item.imagen" slot="start" class="item-img"/>
+      <ion-label>
+        <h2>{{ item.nombre }}</h2>
+        <p class="vendedor">{{ item.vendedor }}</p>
+        <p class="precio">${{ item.precio * item.cantidad }}</p>
+      </ion-label>
+
+      <div slot="end" class="cantidad-control">
+        <ion-button fill="clear" size="small" color="warning" (click)="reducir(i)">
+          <ion-icon name="remove-circle-outline"></ion-icon>
+        </ion-button>
+        <span>{{ item.cantidad }}</span>
+        <ion-button fill="clear" size="small" color="warning" (click)="aumentar(i)">
+          <ion-icon name="add-circle-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-item>
+  </ion-list>
+
+  <div class="total-area" *ngIf="carrito.length > 0">
+    <div class="total-row">
+      <span>Total:</span>
+      <span class="total-precio">${{ total }}</span>
+    </div>
+    <ion-button expand="block" color="warning" routerLink="/pago">
+      <ion-icon name="card-outline" slot="start"></ion-icon>
+      Proceder al Pago
+    </ion-button>
+  </div>
+</ion-content>

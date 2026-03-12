@@ -1,13 +1,119 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>perfil_User</ion-title>
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/productos"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Mi Perfil</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="guardarCambios()">
+        <ion-icon name="save-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">perfil_User</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+
+  <!-- Tarjeta de foto de perfil -->
+  <ion-card class="avatar-card">
+    <ion-card-content class="ion-text-center">
+
+      <ion-avatar class="perfil-avatar" (click)="seleccionarFoto()">
+        <img [src]="fotoPerfil" alt="Foto de perfil" />
+      </ion-avatar>
+
+      <ion-chip color="warning" (click)="seleccionarFoto()">
+        <ion-icon name="camera-outline"></ion-icon>
+        <ion-label>Cambiar foto</ion-label>
+      </ion-chip>
+
+      <!-- Input oculto para subir imagen -->
+      <input
+        #fileInput
+        type="file"
+        accept="image/*"
+        style="display:none"
+        (change)="onFotoSeleccionada($event)" />
+
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Tarjeta de información -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Información personal</ion-card-title>
+      <ion-card-subtitle>Actualiza tus datos</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list lines="none">
+
+        <!-- Nombre -->
+        <ion-item class="input-item">
+          <ion-icon name="person-outline" slot="start" color="warning"></ion-icon>
+          <ion-label position="floating">Nombre completo</ion-label>
+          <ion-input
+            type="text"
+            placeholder="Ej. Ana García"
+            [(ngModel)]="nombre">
+          </ion-input>
+        </ion-item>
+
+        <!-- Teléfono -->
+        <ion-item class="input-item">
+          <ion-icon name="call-outline" slot="start" color="warning"></ion-icon>
+          <ion-label position="floating">Número telefónico</ion-label>
+          <ion-input
+            type="tel"
+            placeholder="+52 000 000 0000"
+            [(ngModel)]="telefono">
+          </ion-input>
+        </ion-item>
+
+        <!-- Aula -->
+        <ion-item class="input-item">
+          <ion-icon name="school-outline" slot="start" color="warning"></ion-icon>
+          <ion-label>Aula</ion-label>
+          <ion-select
+            placeholder="Selecciona tu aula"
+            [(ngModel)]="aula"
+            interface="action-sheet"
+            cancelText="Cancelar"
+            okText="Aceptar">
+            <ion-select-option value="A1">Aula A1</ion-select-option>
+            <ion-select-option value="A2">Aula A2</ion-select-option>
+            <ion-select-option value="B1">Aula B1</ion-select-option>
+            <ion-select-option value="B2">Aula B2</ion-select-option>
+            <ion-select-option value="C1">Aula C1</ion-select-option>
+            <ion-select-option value="C2">Aula C2</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Chip informativo de aula actual -->
+  <div class="ion-padding-horizontal ion-padding-bottom">
+    <p class="info-label">Aula seleccionada:</p>
+    <ion-chip color="warning" *ngIf="aula; else sinAula">
+      <ion-icon name="school-outline"></ion-icon>
+      <ion-label>{{ aula }}</ion-label>
+    </ion-chip>
+    <ng-template #sinAula>
+      <ion-chip color="medium">
+        <ion-icon name="help-circle-outline"></ion-icon>
+        <ion-label>Sin aula asignada</ion-label>
+      </ion-chip>
+    </ng-template>
+  </div>
+
+  <!-- Botón guardar -->
+  <div class="ion-padding">
+    <ion-button expand="block" color="warning" (click)="guardarCambios()">
+      <ion-icon name="save-outline" slot="start"></ion-icon>
+      Guardar cambios
+    </ion-button>
+  </div>
+
 </ion-content>

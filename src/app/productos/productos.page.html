@@ -2,10 +2,6 @@
   <ion-toolbar color="warning">
     <ion-title>UTMarket 🛒</ion-title>
     <ion-buttons slot="end">
-      <ion-button routerLink="/carrito">
-        <ion-icon name="cart-outline"></ion-icon>
-        <ion-badge color="danger" *ngIf="carrito.length > 0">{{ carrito.length }}</ion-badge>
-      </ion-button>
       <ion-button routerLink="/perfil-user">
         <ion-icon name="person-circle-outline"></ion-icon>
       </ion-button>
@@ -22,11 +18,66 @@
   </ion-toolbar>
 </ion-header>
 
+<!-- Modal detalle producto -->
+<ion-modal [isOpen]="modalAbierto" (didDismiss)="cerrarModal()"
+  [breakpoints]="[0, 0.65, 1]" [initialBreakpoint]="0.65">
+
+  <ng-template>
+    <ion-header>
+      <ion-toolbar color="warning">
+        <ion-title>{{ productoSeleccionado?.nombre }}</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="cerrarModal()">
+            <ion-icon name="close-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="ion-padding">
+      <img [src]="productoSeleccionado?.imagen" class="detalle-img" />
+
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{ productoSeleccionado?.nombre }}</ion-card-title>
+          <ion-card-subtitle class="precio">${{ productoSeleccionado?.precio }}</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+          <p class="descripcion">{{ productoSeleccionado?.descripcion }}</p>
+
+          <ion-list lines="none">
+            <ion-item>
+              <ion-icon name="person-outline" slot="start" color="warning"></ion-icon>
+              <ion-label>
+                <p>Vendedor</p>
+                <h3>{{ productoSeleccionado?.vendedor }}</h3>
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-icon name="school-outline" slot="start" color="warning"></ion-icon>
+              <ion-label>
+                <p>Aula</p>
+                <h3>{{ productoSeleccionado?.aula }}</h3>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+
+          <ion-button expand="block" color="success" (click)="contactarWhatsapp()">
+            <ion-icon name="logo-whatsapp" slot="start"></ion-icon>
+            Contactar por WhatsApp
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
 <ion-content>
   <ion-grid>
     <ion-row>
       <ion-col size="6" *ngFor="let p of productosFiltrados">
-        <ion-card class="product-card">
+        <ion-card class="product-card" (click)="verProducto(p)">
           <img [src]="p.imagen" alt="producto" class="product-img"/>
           <ion-card-header>
             <ion-card-title class="product-name">{{ p.nombre }}</ion-card-title>
@@ -36,23 +87,8 @@
               {{ p.vendedor }}
             </p>
           </ion-card-header>
-          <ion-card-content>
-            <ion-button expand="block" size="small" color="warning" (click)="agregarAlCarrito(p)">
-              <ion-icon name="cart-outline" slot="start"></ion-icon>
-              Agregar
-            </ion-button>
-          </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
-
-  <ion-toast
-    [isOpen]="mostrarToast"
-    [message]="mensajeToast"
-    duration="1500"
-    color="success"
-    position="bottom"
-    (didDismiss)="mostrarToast = false">
-  </ion-toast>
 </ion-content>

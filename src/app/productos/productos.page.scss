@@ -1,0 +1,37 @@
+.product-card {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  margin: 6px 0;
+
+  .product-img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+  }
+
+  .product-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #2c1a0e;
+  }
+
+  .product-price {
+    color: #c8860a;
+    font-weight: 700;
+    font-size: 1rem;
+  }
+
+  .product-vendor {
+    font-size: 0.75rem;
+    color: #888;
+    margin: 4px 0 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    ion-icon {
+      font-size: 0.8rem;
+    }
+  }
+}

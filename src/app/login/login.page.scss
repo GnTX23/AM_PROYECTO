@@ -1,5 +1,5 @@
 .login-content {
-  --background: linear-gradient(135deg, #ff6b35, #f7c59f);
+  --background: linear-gradient(160deg, #2c1a0e 0%, #5c3317 40%, #c8860a 100%);
 }
 
 .login-container {
@@ -7,48 +7,95 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
-  padding: 20px;
+  min-height: 100%;
+  padding: 30px 20px;
 }
 
 .logo-area {
   text-align: center;
   margin-bottom: 30px;
-  .app-title {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+
+  .uni-logo {
+    background: white;
+    border-radius: 16px;
+    padding: 12px 20px;
+    display: inline-block;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+
+    .logo-img {
+      height: 60px;
+      display: block;
+    }
   }
+
+  .app-title {
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: #f5c842;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    margin: 0;
+    letter-spacing: 2px;
+  }
+
   .subtitle {
-    color: white;
-    font-size: 1rem;
+    color: #f0d9b0;
+    font-size: 0.9rem;
+    margin-top: 4px;
   }
 }
 
 .form-card {
-  background: white;
-  border-radius: 20px;
-  padding: 30px 20px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 24px;
+  padding: 30px 24px;
   width: 100%;
   max-width: 400px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
 
   h2 {
     text-align: center;
+    color: #3b1f0a;
+    font-weight: 700;
+    font-size: 1.4rem;
     margin-bottom: 20px;
-    color: #333;
   }
+}
+
+.input-item {
+  background: #f7f0e6;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  --padding-start: 12px;
+  border: 1px solid #d4a853;
 }
 
 .quien-eres {
   text-align: center;
-  color: #888;
-  margin: 20px 0 10px;
+  color: #8a6030;
+  font-weight: 600;
+  margin: 20px 0 12px;
 }
 
 .role-buttons {
   display: flex;
-  gap: 10px;
-  margin-top: 10px;
+  gap: 12px;
+
+  ion-button {
+    flex: 1;
+  }
+
+  .btn-vendedor {
+    --background: #8B4513;
+    --background-hover: #6b3410;
+    --border-radius: 12px;
+    font-weight: 700;
+  }
+
+  .btn-usuario {
+    --background: #c8860a;
+    --background-hover: #a56e08;
+    --border-radius: 12px;
+    font-weight: 700;
+  }
 }
